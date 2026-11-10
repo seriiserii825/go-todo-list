@@ -1,0 +1,1 @@
+ALTER table users ADD COLUMN about_me VARCHAR(255) DEFAULT NULL;
