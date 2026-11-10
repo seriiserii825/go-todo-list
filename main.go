@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"time"
 	"todo/db"
+
+	"github.com/k0kubun/pp/v3"
 )
 
 func main() {
@@ -15,20 +15,49 @@ func main() {
 	}
 	defer conn.Close(ctx)
 
-	if err := db.CreateTable(ctx, conn); err != nil {
+	tasks, err := db.SelectPagination(ctx, conn)
+	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Table created successfully")
 
-	if err := db.InsertRow(
-		ctx,
-		conn,
-		"Good Task 3",
-		"This is a sample task description",
-		false,
-		time.Now(),
-	); err != nil {
-		panic(err)
+	for _, task := range tasks {
+		if task.ID == 20 {
+			task.Title = "Updated Task Title 20"
+			task.Description = "Updated Task Description 20"
+			task.Completed = true
+
+			if err := db.UpdateTask(ctx, conn, task); err != nil {
+				panic(err)
+			}
+			pp.Println("Task updated successfully")
+			pp.Println(tasks)
+			return
+		}
 	}
-	fmt.Println("Row inserted successfully")
+
+	// if err := db.CreateTable(ctx, conn); err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("Table created successfully")
+
+	// if err := db.UpdateRow(ctx, conn, db.TaskModel{ID: 20, Completed: true}); err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("Row updated successfully")
+
+	// newTask := db.TaskModel{
+	// 	Title:       "Good Task 5",
+	// 	Description: "This is a sample task description",
+	// 	Completed:   false,
+	// 	CreatedAt:   time.Now(),
+	// }
+	//
+	// if err := db.InsertRow(
+	// 	ctx,
+	// 	conn,
+	// 	newTask,
+	// ); err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("Row inserted successfully")
 }
