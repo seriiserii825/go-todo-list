@@ -8,18 +8,16 @@ import (
 
 func CreateTable(ctx context.Context, conn *pgx.Conn) error {
 	sqlQuery := `
-	CREATE TABLE IF NOT EXISTS todos (
+	CREATE TABLE IF NOT EXISTS tasks (
 		id SERIAL PRIMARY KEY,
 		title VARCHAR(200) NOT NULL,
 		description VARCHAR(1000) NOT NULL,
 		completed BOOLEAN NOT NULL DEFAULT FALSE,
 		created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-		updated_at TIMESTAMP
+		updated_at TIMESTAMP,
+		UNIQUE (title)
 	);
 	`
 	_, err := conn.Exec(ctx, sqlQuery)
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
