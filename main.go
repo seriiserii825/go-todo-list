@@ -2,10 +2,7 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"todo/db"
-
-	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -15,10 +12,6 @@ func main() {
 	// } else {
 	// 	fmt.Println("val is empty")
 	// }
-
-	if err := godotenv.Load(); err != nil {
-		fmt.Println("no .env file, using system env")
-	}
 
 	ctx := context.Background()
 	conn, err := db.DbConnection(ctx)

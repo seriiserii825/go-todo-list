@@ -8,6 +8,8 @@
 *.test
 *.out
 
+Makefile
+
 # Build directories
 /bin/
 /build/
@@ -40,3 +42,4 @@ Thumbs.db
 # Logs
 *.log
 .env.sha256
+Makefile.sha256
