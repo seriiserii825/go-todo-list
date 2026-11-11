@@ -44,3 +44,4 @@ Thumbs.db
 *.log
 .env.sha256
 Makefile.sha256
+.Makefile
