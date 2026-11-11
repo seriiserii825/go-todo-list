@@ -1,11 +1,15 @@
 package main
 
 import (
-	"context"
-	"todo/db"
+	"todo/http_server"
 )
 
 func main() {
+	err := http_server.StartHTTPServer()
+	if err != nil {
+		panic(err)
+	}
+
 	// val := os.Getenv("phone_number")
 	// if val != "" {
 	// 	fmt.Println("val: ", val)
@@ -13,12 +17,12 @@ func main() {
 	// 	fmt.Println("val is empty")
 	// }
 
-	ctx := context.Background()
-	conn, err := db.DbConnection(ctx)
-	if err != nil {
-		panic(err)
-	}
-	defer conn.Close(ctx)
+	// ctx := context.Background()
+	// conn, err := db.DbConnection(ctx)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer conn.Close(ctx)
 
 	// tasks, err := db.SelectPagination(ctx, conn)
 	// if err != nil {
