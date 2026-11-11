@@ -1,9 +1,9 @@
-FROM golang:1.24-bookworm
+FROM golang:1.27-bookworm
 
 WORKDIR /app
 
 COPY . .
 
-RUN go mod tidy
+RUN go build -o /app/exe main.go
 
-CMD ["make" "service-run"]
+CMD ["/app/exe"]
