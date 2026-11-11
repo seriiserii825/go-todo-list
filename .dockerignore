@@ -1,0 +1,5 @@
+.git
+.env
+*.gpg
+tmp
+pg_backups
