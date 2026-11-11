@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"todo/http_server"
 )
 
 func main() {
+	fmt.Println("Starting the HTTP server...")
 	err := http_server.StartHTTPServer()
 	if err != nil {
 		panic(err)
