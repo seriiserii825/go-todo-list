@@ -26,6 +26,7 @@ coverage.out
 # Environment variables
 .env
 .env.*
+!.env.gpg
 !.env.example
 
 # IDE
